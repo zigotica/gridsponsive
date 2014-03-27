@@ -1,0 +1,143 @@
+
+/*/ -------------------------------------------------------------------- MEDIA QUERIES GRIDS AND FUNCTIONS */
+
+$BASEPX : 16 !default;
+$GOLDEN : 1.61803398875;
+$USEGOLDENDEFAULT : 0;
+$CGDEFAULT : 2;
+$CGRATIO : 0;
+$grid_columns: 4;
+
+// these two are recalculated within functions/mixins, needed to be set globally
+$grid_col_width: 0;
+$grid_gutter_width: 0; 
+
+@mixin golden($fold:$CGDEFAULT,$g:$USEGOLDENDEFAULT) {
+  @if($fold ==  0) {
+    /* 1 gutterw = 1 colw */
+    $CGRATIO : 0;
+  }
+  @else if($g == 1){
+    /* 1 gutterw * $CGRATIO = 1 colw */
+    $CGRATIO : $GOLDEN * $fold;
+  }
+  @else {
+    /* 1 gutterw * $fold = 1 colw */
+    $CGRATIO : $fold;
+  }
+}
+
+@mixin cols($c:4) {
+  $grid_columns: $c;
+}
+
+@function MQem($sizepx, $marginpx:0) {
+  @return (($sizepx + $marginpx) / $BASEPX ) * 1em
+}
+
+$bp-mobile  : MQem(320);    //: 20
+$bp-tablet  : MQem(744);    //: 46.5
+$bp-desk    : MQem(1024);   //: 64
+$bp-wide    : MQem(1280);   //: 80
+$bp-extra   : MQem(1348,40);//: 86.75
+
+
+@mixin gridsetup($c,$r:$CGDEFAULT,$g:$USEGOLDENDEFAULT) {
+  @include golden($r,$g); 
+  @include cols($c);
+  $grid_total_width: 100%;
+  $grid_gutter_width: gutterw();
+  $grid_col_width: colw();
+}
+
+@function gutterw() {
+  @if($CGRATIO ==  0) { 
+    /* 1 gutterw = 1 colw; 
+    ie. 4 cols -> cal(100/(4*2))*1% -> 12.5% -> 320*0.125 = 40
+    */
+    @return cal(100/($grid_columns*2))*1%;
+  }
+  @else {
+    /* 1 gutterw = 1 colw / $CGRATIO 
+    ie. 4 cols and CGRATIO=4.85 -> cal(100/((4*4.85)+4))*1% -> 4.27350427% -> 320*0.0427350427 = 13.68
+    */
+    @return cal(100/(($grid_columns*$CGRATIO)+$grid_columns))*1%;
+  }
+}
+
+@function colw() {
+  @if($CGRATIO ==  0) { 
+    /* 1 colw = 1 gutterw 
+    ie. 4 cols -> 12.5% -> 320*0.125 = 40
+    (40+40)*4 = 320
+    */
+    @return gutterw();
+  }
+  @else {
+    /* 1 colw = 1 gutterw * $CGRATIO 
+    ie. 4 cols and CGRATIO=4.85 -> 4.27350427% * 4.85 -> 20,7264957% -> 320*0.207264957 = 66.32
+    (66.32+13.68)*4 = 320
+    */
+    @return gutterw() * $CGRATIO;
+  }
+}
+
+/* 1gutterw size relative to parent grid, given child element num of cols */
+@function relgutterw($c:4) {
+  /* 
+    100 = ($c - 1)·x + $c·CGRATIO·x -> x = 100 / ( ($c - 1) + $c·CGRATIO)
+  */
+  @return ( 100 / ( ($c - 1) + ($c * $CGRATIO) )) *1%;
+}
+
+@mixin bpmin($min) {
+  @media (min-width: $min) { @content; }
+}
+@mixin bpmax($max) {
+  @media (max-width: $max) { @content; }
+}
+@mixin bpminmax($min, $max) {
+  @media (min-width: $min) and (max-width: $max) { @content; }
+}
+
+@mixin gridcol($n:$grid_columns, $colsgap:0, $offset:0, $float: left) {
+  $gap : $colsgap * ($grid_gutter_width + $grid_col_width);
+  float: $float;
+  @if $float == "left" {
+    margin-left: ( $grid_gutter_width / 2 ) + $offset + $gap;
+    margin-right: ( $grid_gutter_width / 2 );
+  }
+  @else {
+    margin-right: ( $grid_gutter_width / 2 ) + $offset + $gap;
+    margin-left: ( $grid_gutter_width / 2 ); 
+  }
+  $width: ( ($grid_gutter_width + $grid_col_width) * $n ) - $grid_gutter_width;
+  width: $width;
+  
+  /* this is just for debugging purposes, just shows info and gets disabled by browser */
+  @if $DEBUGMODE == 1 {
+  GRIDCOL: gridcolumns$grid_columns usedcolumns$n colsgap$colsgap offset$offset gap$gap gridcolwidth$grid_col_width gridgutterwidth$grid_gutter_width width$width CGRATIO$CGRATIO bp-mobile$bp-mobile bp-tablet$bp-tablet bp-desk$bp-desk bp-wide$bp-wide bp-extra$bp-extra;
+  }
+}
+
+@mixin gridwrap($n:$grid_columns, $colsgap:0, $offset:0, $float: left) {
+  /* same as gridcol but this will be container of children grids */
+  /* we collapse outer margins to allow inner grids follow columns */
+  $gap : $colsgap * ($grid_gutter_width + $grid_col_width);
+  float: $float;
+  @if $float == "left" {
+    margin-left: $offset + $gap;
+    margin-right: 0;
+  }
+  @else {
+    margin-right: $offset + $gap;
+    margin-left: 0;
+  }
+  $width: ( ($grid_gutter_width + $grid_col_width) * $n );
+  width: $width;
+  /* this is just for debugging purposes, just shows info and gets disabled by browser */
+  @if $DEBUGMODE == 1 {
+  GRIDWRAP: gridcolumns$grid_columns usedcolumns$n colsgap$colsgap offset$offset gap$gap gridcolwidth$grid_col_width gridgutterwidth$grid_gutter_width width$width;
+  }
+}
+

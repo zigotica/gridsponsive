@@ -1,0 +1,126 @@
+
+/*! --------------------------------------------------------
+    GENERAL STYLES, MOBILE FIRST
+--------------------------------------------------------- */
+
+hr {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  vertical-align: baseline;
+}
+
+*,
+*:before,
+*:after { 
+  -webkit-box-sizing: border-box; 
+     -moz-box-sizing: border-box; 
+          box-sizing: border-box;
+}
+
+html { 
+  background-color: white;
+  color: $grey_dark;
+  font-size: 62.5%;         /* 10/16 */
+  line-height: cal(10/10);  /* 10/10 */
+}
+body {
+  background-color: white;
+  position: relative;
+  width: 100%;
+  margin: 0 auto;
+  @include font(H);
+  @include debug(red, white);
+}
+
+a[x-apple-data-detectors=true] {color: inherit !important; background-color: inherit !important;}
+a {
+  text-decoration: none;
+  color: $colormain;
+  &:hover { text-decoration: underline; }
+}
+
+/* -------------------------------------------------------- MAIN WRAPPER, SECTIONS */
+
+/* expendedbox gets 100% full width */
+.expandedbox {
+    position: relative;
+    clear: both;
+    background-color: white;
+    width: 100%;
+    max-width: 100%;
+    &:after { @include clearme(); }
+    @include debug(red, white);
+}
+.expandedbox-light {
+  @extend .expandedbox;
+  background-color: $grey_lig;
+}
+.expandedbox-med {
+  @extend .expandedbox;
+  background-color: $grey_med;
+}
+.expandedbox-dark {
+  @extend .expandedbox;
+  background-color: $grey_dark;
+}
+
+/* wrapbox adjust margins depending on mediaqueries */
+.wrapbox {
+    position: relative;
+    clear: both;
+    margin: 0 auto;
+    padding: 0;
+    max-width: 93.6%; /* 93.6% is nice for 320px full -> 300px content */
+    @include bpmin($bp-tablet) { /* 46.5em*DEFAULT!16px=744px */ 
+        max-width: 90%; /* max-width: em(744, 10); would fix content, % is more fluid */
+    }
+    @include bpmin($bp-extra) { /* 84.25em*DEFAULT!16px=1348px */ 
+        max-width: em(1348,10);
+    }
+    &:after { @include clearme(); }
+}
+
+/* content boxes get 100% of container (typically a wrapbox) */
+.contentbox {
+    position: relative;
+    clear: both;
+    width: 100%;
+    &:after {@include clearme();}
+}
+
+/* main container */
+.main { 
+  width: 100%;
+}
+
+
+/* -------------------------------------------------------- MEDIABOX */
+.mediabox {
+    @include gridsetup(4,4); @include gridwrap(4);
+    > div { 
+      @include gridcol(4); margin-bottom: 20px; 
+    }
+    @include bpmin($bp-tablet) { 
+        @include gridsetup(12,3,1); @include gridwrap(12); 
+        > div { margin-bottom: 0; }
+        .text { @include gridcol(6); }
+        .media { @include gridcol(6); }
+    }
+    .media { 
+        img { display: block; width: 100%; height: auto; }
+    }
+    .text {
+        position: relative;
+        @include bpmin($bp-tablet) { 
+            position: static;
+        }
+
+        p {
+            @include gridsetup(4,4); padding: 0 relgutterw(4);
+            @include bpmin($bp-tablet) { 
+                @include gridsetup(6,3,1); padding: 0 relgutterw(6);
+            }
+        }
+    }
+}

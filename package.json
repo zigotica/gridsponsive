@@ -1,0 +1,42 @@
+{
+  "name": "gridsponsive",
+  "version": "0.1.0",
+  "author": "Sergi Meseguer @zigotica",
+  "description": "gridsponsive: opinionated responsive grids boilerplate",
+  "keywords": [
+    "Grids",
+    "Responsive",
+    "Boilerplate",
+    "frontend",
+    "CSS",
+    "SCSS",
+    "Compass",
+    "Javascript",
+    "grunt"
+  ],
+  "homepage": "http://www.embryojs.com",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/zigotica/gridsponsive.git"
+  },
+  "bugs": {
+    "url": "http://github.com/zigotica/gridsponsive/issues",
+    "email": "gridsponsive@gmail.com"
+  },
+  "licenses": [
+    {
+      "type": "FreeBSD",
+      "url": "http://github.com/zigotica/gridsponsive/LICENSE.txt"
+    }
+  ],
+  "devDependencies": {
+    "grunt": "~0.4.4",
+    "load-grunt-tasks": "~0.1.3",
+    "grunt-contrib-jshint": "~0.6.5",
+    "grunt-contrib-uglify": "~0.2.7",
+    "grunt-contrib-concat": "~0.3.0",
+    "grunt-contrib-connect": "~0.3.0",
+    "grunt-contrib-watch": "~0.4.4",
+    "grunt-notify": "~0.2.20"
+  }
+}

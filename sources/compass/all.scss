@@ -1,0 +1,27 @@
+/*! ---------------------------------------------------------------------------------------------------------------- 
+    GRIDSPONSIVE by Sergi Meseguer @zigotica http://www.gridsponsive.com
+    Licensed under the FreeBSD license.
+
+    CSS developed using Sass/Compass locally.  
+    DO NOT EDIT THIS .CSS, it will be overwritten from .SCSS
+    ---------------------------------------------------------------------------------------------------------------- */
+
+
+/*/ -------------------------------------------------------------------- COMPASS MIXINS */
+
+@import "compass";
+@import "compass/css3";
+@import "compass/reset";
+
+/*/ -------------------------------------------------------------------- CUSTOM MIXINS */
+
+@import "varsmixins";
+@import "fonts";
+@import "gridsponsive";
+
+/*/ -------------------------------------------------------------------- MODULE IMPORTS */
+
+@import "base";
+@import "menus";
+@import "components";
+@import "forms";

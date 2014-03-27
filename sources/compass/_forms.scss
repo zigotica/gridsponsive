@@ -1,0 +1,53 @@
+
+/*! --------------------------------------------------------
+    FORM STYLES
+--------------------------------------------------------- */
+
+/* -------------------------------------------------------- INPUT PLACEHOLDERS */
+::-webkit-input-placeholder{
+    @include font( HL ); color: $grey_lig;
+}
+::-moz-placeholder{
+    @include font( HL ); color: $grey_lig;
+}
+:-moz-placeholder{
+    @include font( HL ); color: $grey_lig;
+}
+:-ms-input-placeholder {
+    @include font( HL ); color: $grey_lig;
+}
+
+/* major beautifiers from http://goo.gl/o3F6A and http://goo.gl/tF2Lv    
+/* ------------------------------------------------------ radio check */
+input[type="checkbox"],
+input[type="radio"] { 
+    display: none;
+    .lt-ie9 & {
+        display: inline-block;
+    }
+}
+input[type="radio"] + label, 
+input[type="checkbox"] + label {
+    position: relative; 
+    padding-left: 44px; 
+    .lt-ie9 & {
+        text-indent: 0;
+    }
+}
+input[type="radio"] + label:before, 
+input[type="checkbox"] + label:before { 
+    position: absolute;
+    top:0px; left: 0; 
+    content:""; 
+    display: inline-block;
+    width:32px; 
+    height:32px; 
+    padding: 0; margin: 0; 
+    background-position: 0;
+    background-size: cover;
+
+    .lt-ie9 & {
+        display: none;
+        background-image: none;
+    }
+}
