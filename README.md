@@ -20,10 +20,11 @@ Gridsponsive requires:
 * [GruntJS](http://gruntjs.com/): Gridsponsive itself would not strictly require it, but since I am using the boilerplate to include basic JS (jshint, concatenate, uglify), and in most projects I am using [Grunticon](https://github.com/filamentgroup/grunticon) to generate icons, Grunt was a no-brainer. Also, it has a nice livereload task.
 
 ## Installation
-
+### Compass
+If you haven't yet, you need to type `sudo gem install compass` in your terminal to install [Compass](http://compass-style.org/).
 
 ### Grunt and other packages
-If you haven't yet, you will need to install [GruntJS](http://gruntjs.com/) (globally) typing `npm install -g grunt-cli`  (yes, it requires npm).
+If you haven't yet, you will need to install [GruntJS](http://gruntjs.com/) (globally) typing `npm install -g grunt-cli`  (yes, it requires npm, so you will also need `brew install node`).
 To install the other packages (locally) `npm install --save-dev`
 This will add a node_modules folder in your project with subfolders including the packages listed in package.json. 
 
