@@ -83,7 +83,7 @@ $bp-extra   : MQem(1348,40);//: 86.75
 }
 
 /* 1gutterw size relative to parent grid, given child element num of cols */
-@function relgutterw($c:4) {
+@function relGutW($c:4) {
   /* 
     100 = ($c - 1)·x + $c·CGRATIO·x -> x = 100 / ( ($c - 1) + $c·CGRATIO)
   */

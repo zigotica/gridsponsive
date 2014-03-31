@@ -1,43 +1,43 @@
 /*/ -------------------------------------------------------------------- GENERAL BOX MIXINS */
 
 @mixin no-bullet {
-  list-style-image: none;
-  list-style-type: none;
-  margin-left: 0; 
+    list-style-image: none;
+    list-style-type: none;
+    margin-left: 0; 
 }
 @mixin horizontal-list-item($padding: 0px, $direction: left) {
-  @include no-bullet;
-  white-space: nowrap;
-  float: $direction;
-  @if $padding {
-    padding: { left: $padding; right: $padding; };
-    &:first-child, &.first { padding-#{$direction}: 0; }
-    &:last-child { padding-#{opposite-position($direction)}: 0; }
-    &.last { padding-#{opposite-position($direction)}: 0; } 
-  } 
+    @include no-bullet;
+    white-space: nowrap;
+    float: $direction;
+    @if $padding {
+        padding: { left: $padding; right: $padding; };
+        &:first-child, &.first { padding-#{$direction}: 0; }
+        &:last-child { padding-#{opposite-position($direction)}: 0; }
+        &.last { padding-#{opposite-position($direction)}: 0; } 
+    } 
 }
 @mixin horizontal-list($padding: 0px, $direction: left) {
-  li { @include horizontal-list-item($padding, $direction); } 
+    li { @include horizontal-list-item($padding, $direction); } 
 }
 @mixin clearfix {
-  overflow: hidden;
-  *zoom: 1;
-  clear: both;
+    overflow: hidden;
+    *zoom: 1;
+    clear: both;
 }
 /*/ 
 makes element grow vertically, clears floats, and unlike previous fix, allows for overflow to show more content 
 use it in a pseudo as in &:after {@include clearme();}
 */
 @mixin clearme() {
-  content: " "; display: block; height: 0; clear: both; 
+    content: " "; display: block; height: 0; clear: both; 
 }
 
 @mixin shadowme($bscolor, $bsoffx, $bsoffy, $bsblur, $imp:"") {
-  @if $imp { }
-  @else { $imp : ""; }
-  -webkit-box-shadow: $bscolor $bsoffx $bsoffy $bsblur $imp;
-  -moz-box-shadow: $bscolor $bsoffx $bsoffy $bsblur $imp;
-  box-shadow: $bscolor $bsoffx $bsoffy $bsblur $imp;
+    @if $imp { }
+    @else { $imp : ""; }
+    -webkit-box-shadow: $bscolor $bsoffx $bsoffy $bsblur $imp;
+       -moz-box-shadow: $bscolor $bsoffx $bsoffy $bsblur $imp;
+            box-shadow: $bscolor $bsoffx $bsoffy $bsblur $imp;
 }
 
 @mixin rounded($radius) {
@@ -47,17 +47,17 @@ use it in a pseudo as in &:after {@include clearme();}
 }
 
 @mixin gradientr($top, $med, $bot){
-  background-color: $top;
-  @include background-image(linear-gradient($top, $med, $bot)); 
+    background-color: $top;
+    @include background-image(linear-gradient($top, $med, $bot)); 
 }
 
 /*/ -------------------------------------------------------------------- PREFIXER */
 @mixin prefixer($name, $argument) {
-  -webkit-#{$name}: #{$argument};
-  -ms-#{$name}: #{$argument};
-  -moz-#{$name}: #{$argument};
-  -o-#{$name}: #{$argument};
-  #{$name}: #{$argument};
+    -webkit-#{$name}: #{$argument};
+    -ms-#{$name}: #{$argument};
+    -moz-#{$name}: #{$argument};
+    -o-#{$name}: #{$argument};
+    #{$name}: #{$argument};
 }
 
 /*/ -------------------------------------------------------------------- ANIMATIONS */
@@ -104,69 +104,69 @@ use it in a pseudo as in &:after {@include clearme();}
 $baselinepx: 10px !default;
 /*/ px to rem: https://github.com/bitmanic/rem */  
 @mixin rem($property, $pxvalues) {
-  $baselinerem: $baselinepx / 1rem;
-  #{$property}: $pxvalues;
-  @if type-of($pxvalues) == "number" {
-    #{$property}: $pxvalues / $baselinerem; 
-  }
-  @else {
-    $remvalues: unquote("");
-    @each $value in $pxvalues {
-      @if $value == 0 {
-        $remvalues: append($remvalues, $value); 
-      }
-      @else {
-        $remvalues: append($remvalues, $value / $baselinerem); 
-      } 
+    $baselinerem: $baselinepx / 1rem;
+    #{$property}: $pxvalues;
+    @if type-of($pxvalues) == "number" {
+        #{$property}: $pxvalues / $baselinerem; 
     }
-    #{$property}: $remvalues; 
-  } 
+    @else {
+        $remvalues: unquote("");
+        @each $value in $pxvalues {
+            @if $value == 0 {
+                $remvalues: append($remvalues, $value); 
+            }
+            @else {
+                $remvalues: append($remvalues, $value / $baselinerem); 
+            } 
+        }
+        #{$property}: $remvalues; 
+    } 
 }
 
 
 /*/ px to em, context = element font-size */  
 @function em($target, $context) {
-  @if $target == 0 { @return 0; }
-  @if type-of($target) == "number" {
-    @return $target / $context + 0em; 
-  }
-  @else {
-    $ems: unquote("");
-    @each $value in $target {
-      @if $value == 0 {
-        $ems: append($ems, $value); 
-      }
-      @else {
-        $ems: append($ems, $value / $context + 0em); 
-      } 
+    @if $target == 0 { @return 0; }
+    @if type-of($target) == "number" {
+        @return $target / $context + 0em; 
     }
-    @return $ems;
-  }
+    @else {
+        $ems: unquote("");
+        @each $value in $target {
+            @if $value == 0 {
+                $ems: append($ems, $value); 
+            }
+            @else {
+                $ems: append($ems, $value / $context + 0em); 
+            } 
+        }
+        @return $ems;
+    }
 }
 
 /*/ px to %, context = parent width/height */
 @function perc($target, $context) {
-  @if $target == 0 { @return 0; }
-  @if type-of($target) == "number" {
-    @return 100 * $target / $context + 0%; 
-  }
-  @else {
-    $ems: unquote("");
-    @each $value in $target {
-      @if $value == 0 {
-        $ems: append($ems, $value); 
-      }
-      @else {
-        $ems: append($ems, 100* ($value / $context) +0%); 
-      } 
+    @if $target == 0 { @return 0; }
+    @if type-of($target) == "number" {
+        @return 100 * $target / $context + 0%; 
     }
-    @return $ems;
-  }
+    @else {
+        $ems: unquote("");
+        @each $value in $target {
+            @if $value == 0 {
+                $ems: append($ems, $value); 
+            }
+            @else {
+                $ems: append($ems, 100* ($value / $context) +0%); 
+            } 
+        }
+        @return $ems;
+    }
 }
 
 /*/ simple maths */
 @function cal($whatever) {
-  @return $whatever *1;
+    @return $whatever *1;
 }
 
 
@@ -186,34 +186,34 @@ $DURATION_OUT : 0.5s; // 0.75s;
 /*/ -------------------------------------------------------------------- DEBUG STUFF */
 $DEBUGMODE : 1; 
 @mixin debug($color:red, $bg:green) { 
-  @if $DEBUGMODE == 0 {
-    opacity: .9;
-    outline: 1px solid $color;
-    background-color: $bg;
-  }
+    @if $DEBUGMODE == 0 {
+        opacity: .9;
+        outline: 1px solid $color;
+        background-color: $bg;
+    }
 }
 
 
 /*/ -------------------------------------------------------------------- BEFORE/AFTER MIXINS */
 
 @mixin befter($vpos: "", $content:" ") { 
-  content: $content; 
-  display: block;
-  position: absolute;
-  @if $vpos == "top" { top: 0; }
-  @if $vpos == "bottom" { bottom: 0; }
+    content: $content; 
+    display: block;
+    position: absolute;
+    @if $vpos == "top" { top: 0; }
+    @if $vpos == "bottom" { bottom: 0; }
 }
 
 @mixin triangle($dir:"top", $size:6px, $offx:-12px, $offy:0px, $color:$maincolor) {
-  @include befter(); 
-  top: $offy; left: $offx;
-  $point:"";
-  @if($dir == "top" ) {$point : "bottom";}
-  @if($dir == "right" ) {$point : "left";}
-  @if($dir == "bottom" ) {$point : "top";}
-  @if($dir == "left" ) {$point : "right";}
+    @include befter(); 
+    top: $offy; left: $offx;
+    $point:"";
+    @if($dir == "top" ) {$point : "bottom";}
+    @if($dir == "right" ) {$point : "left";}
+    @if($dir == "bottom" ) {$point : "top";}
+    @if($dir == "left" ) {$point : "right";}
 
-  border: $size solid transparent;
-  border-#{$point}-color: $color;
+    border: $size solid transparent;
+    border-#{$point}-color: $color;
 }
 

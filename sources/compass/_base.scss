@@ -4,40 +4,40 @@
 --------------------------------------------------------- */
 
 hr {
-  margin: 0;
-  padding: 0;
-  border: 0;
-  vertical-align: baseline;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    vertical-align: baseline;
 }
 
 *,
 *:before,
 *:after { 
-  -webkit-box-sizing: border-box; 
-     -moz-box-sizing: border-box; 
-          box-sizing: border-box;
+    -webkit-box-sizing: border-box; 
+       -moz-box-sizing: border-box; 
+            box-sizing: border-box;
 }
 
 html { 
-  background-color: white;
-  color: $grey_dark;
-  font-size: 62.5%;         /* 10/16 */
-  line-height: cal(10/10);  /* 10/10 */
+    background-color: white;
+    color: $grey_dark;
+    font-size: 62.5%;         /* 10/16 */
+    line-height: cal(10/10);  /* 10/10 */
 }
 body {
-  background-color: white;
-  position: relative;
-  width: 100%;
-  margin: 0 auto;
-  @include font(H);
-  @include debug(red, white);
+    background-color: white;
+    position: relative;
+    width: 100%;
+    margin: 0 auto;
+    @include font(H);
+    @include debug(red, white);
 }
 
 a[x-apple-data-detectors=true] {color: inherit !important; background-color: inherit !important;}
 a {
-  text-decoration: none;
-  color: $colormain;
-  &:hover { text-decoration: underline; }
+    text-decoration: none;
+    color: $colormain;
+    &:hover { text-decoration: underline; }
 }
 
 /* -------------------------------------------------------- MAIN WRAPPER, SECTIONS */
@@ -53,16 +53,16 @@ a {
     @include debug(red, white);
 }
 .expandedbox-light {
-  @extend .expandedbox;
-  background-color: $grey_lig;
+    @extend .expandedbox;
+    background-color: $grey_lig;
 }
 .expandedbox-med {
-  @extend .expandedbox;
-  background-color: $grey_med;
+    @extend .expandedbox;
+    background-color: $grey_med;
 }
 .expandedbox-dark {
-  @extend .expandedbox;
-  background-color: $grey_dark;
+    @extend .expandedbox;
+    background-color: $grey_dark;
 }
 
 /* wrapbox adjust margins depending on mediaqueries */
@@ -91,7 +91,7 @@ a {
 
 /* main container */
 .main { 
-  width: 100%;
+    width: 100%;
 }
 
 
@@ -99,7 +99,7 @@ a {
 .mediabox {
     @include gridsetup(4,4); @include gridwrap(4);
     > div { 
-      @include gridcol(4); margin-bottom: 20px; 
+        @include gridcol(4); margin-bottom: 20px; 
     }
     @include bpmin($bp-tablet) { 
         @include gridsetup(12,3,1); @include gridwrap(12); 
@@ -117,9 +117,9 @@ a {
         }
 
         p {
-            @include gridsetup(4,4); padding: 0 relgutterw(4);
+            @include gridsetup(4,4); padding: 0 relGutW(4);
             @include bpmin($bp-tablet) { 
-                @include gridsetup(6,3,1); padding: 0 relgutterw(6);
+                @include gridsetup(6,3,1); padding: 0 relGutW(6);
             }
         }
     }

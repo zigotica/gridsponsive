@@ -49,7 +49,7 @@ $bp-tablet  : MQem(744);    //: 46.5em
 $bp-desk    : MQem(1024);   //: 64em
 $bp-extra   : MQem(1348,40);//: 86.75em
 ```
-Once defined, we can target specific breapoints using helpers (`pmin`, `bpmax`, `bpminmax`) that convert to mediaqueries, as in:
+Once defined, we can target specific breapoints using helpers (`bpmin`, `bpmax`, `bpminmax`) that convert to mediaqueries, as in:
 
 ```
 p {
@@ -93,12 +93,12 @@ div {
 
 This way my markup will be semantic since I'm not adding size-meaning to elements that will change measures with media queries. 
 
-We can also defined inner paddings using `relgutterw` function, that takes number of used columns in that selector, then calculates internally the effective 1 gutter size as relative measure unit. Using same example above:
+We can also defined inner paddings using `relGutW` function, that takes number of used columns in that selector, then calculates internally the effective 1 gutter size as relative measure unit. Using same example above:
 
 ```
 p {
     @include gridcol(2); 
-    padding: 0 @include relgutterw(2); /* sides padding = 1 gutter width */
+    padding: 0 @include relGutW(2); /* sides padding = 1 gutter width */
 }
 ```
 
@@ -171,4 +171,4 @@ Gridsponsive does not setup any visual design, but it comes with 3 basic layout 
 Use the issue tracker, send pull requests, the usual polite manners. Thanx.
 
 ## License
-[FreeBSD](http://github.com/zigotica/embryojs/LICENSE-FreeBSD.txt)
+[FreeBSD](http://github.com/zigotica/gridsponsive/LICENSE-FreeBSD.txt)
