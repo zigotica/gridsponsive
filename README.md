@@ -171,4 +171,4 @@ Gridsponsive does not setup any visual design, but it comes with 3 basic layout 
 Use the issue tracker, send pull requests, the usual polite manners. Thanx.
 
 ## License
-[FreeBSD](http://github.com/zigotica/gridsponsive/LICENSE.txt)
+[FreeBSD](http://github.com/zigotica/gridsponsive/blob/master/LICENSE.txt)
