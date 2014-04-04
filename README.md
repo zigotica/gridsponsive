@@ -163,9 +163,9 @@ Gridsponsive does not setup any visual design, but it comes with 3 basic layout 
 
 ## TO-DO
 
-* Dedicated site with more detailed documentation and demos :-)
-* Grunt task for first-time breakpoints and Grids creation
-* Sync grids.js/grids.css helpers with values used at Grids creation
+* (under development) Dedicated site with more detailed documentation and demos :-)
+* (under development) Ruby console script to automatically create breakpoints and Grid variables and functions by asking simple questions to developer and writting to SCSS file. 
+* (under development) Sync grids.js/grids.css helpers with values used at Grids creation
 
 ## Complaints?
 Use the issue tracker, send pull requests, the usual polite manners. Thanx.
