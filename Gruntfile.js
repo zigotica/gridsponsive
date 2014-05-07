@@ -59,7 +59,7 @@ module.exports = function(grunt) {
 
         watch: {
             main: {
-                files: ['*.html', '*.php', 'dev/*.html', 'dev/*.php', '<%= jshint.main %>', '<%= SOURCE.JS %>/grids/grid.css', '<%= SOURCE.JS %>/*.js', '<%= BUILDS.JS %>/*.js', '<%= SOURCE.JS %>/libs/*.js', '<%= BUILDS.CSS %>/all.css'],
+                files: ['*.html', '*.php', 'Gruntfile.js', 'dev/*.html', 'dev/*.php', '<%= jshint.main %>', '<%= SOURCE.JS %>/grids/grid.css', '<%= SOURCE.JS %>/*.js', '<%= BUILDS.JS %>/*.js', '<%= SOURCE.JS %>/libs/*.js', '<%= BUILDS.CSS %>/*.css'],
                 tasks: 'default'
             },
             options: {

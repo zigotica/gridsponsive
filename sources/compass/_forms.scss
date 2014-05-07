@@ -5,16 +5,16 @@
 
 /* -------------------------------------------------------- INPUT PLACEHOLDERS */
 ::-webkit-input-placeholder{
-    @include font( HL ); color: $grey_lig;
+    color: $grey_lig;
 }
 ::-moz-placeholder{
-    @include font( HL ); color: $grey_lig;
+    color: $grey_lig;
 }
 :-moz-placeholder{
-    @include font( HL ); color: $grey_lig;
+    color: $grey_lig;
 }
 :-ms-input-placeholder {
-    @include font( HL ); color: $grey_lig;
+    color: $grey_lig;
 }
 
 /* major beautifiers from http://goo.gl/o3F6A and http://goo.gl/tF2Lv    

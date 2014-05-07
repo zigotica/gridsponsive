@@ -1,0 +1,24 @@
+
+
+/*/ ------------------------------------------------------- CONTENT MAXW */
+        /* default breakpoint (0) */
+        @media (min-width: 0){
+            .wrapbox {
+                max-width: 240px; 
+            }
+        }
+        
+        /* $bp-mobile breakpoint (380px) */
+        @media (min-width: $bp-mobile){
+            .wrapbox {
+                max-width: 320px; 
+            }
+        }
+        
+        /* $bp-tablet breakpoint (560px) */
+        @media (min-width: $bp-tablet){
+            .wrapbox {
+                max-width: 90%; 
+            }
+        }
+        

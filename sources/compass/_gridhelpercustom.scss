@@ -1,0 +1,68 @@
+
+
+/*/ ------------------------------------------------------- GRID VISUAL HELPER */
+/* default GRID */
+@media (min-width: 0){
+            #grid {
+                margin-left: cal(-4/2*(40px+20px));
+                max-width: cal(4*(40px+20px));  
+            }
+            #grid div.vert {
+                background: red;
+                width:  40px;
+                margin: 0 cal(20px/2);
+            }
+            #grid div.vert.first-line {
+                margin-left: cal(20px/2);
+            }
+            #grid div.vert.cols4 { /* this grid uses 4 cols */
+                margin-right: 0;
+            }
+            
+}
+/* $bp-mobile GRID */
+@media (min-width: 380px){
+            #grid {
+                margin-left: cal(-4/2*(60px+20px));
+                max-width: cal(4*(60px+20px));  
+            }
+            #grid div.vert {
+                background: green;
+                width:  60px;
+                margin: 0 cal(20px/2);
+            }
+            #grid div.vert.first-line {
+                margin-left: cal(20px/2);
+            }
+            #grid div.vert.cols4 { /* this grid uses 4 cols */
+                margin-right: 0;
+            }
+            
+                #grid div.vert.cols4 { /* reset previous 4 cols grid */
+                    margin-right: cal(20px/2);
+                }
+                
+}
+/* $bp-tablet GRID */
+@media (min-width: 560px){
+            #grid {
+                margin-left: cal(-90%/2);
+                max-width: 90%;  
+            }
+            #grid div.vert {
+                background: blue;
+                width:  cal(100%*1/(24+(24*1)));
+                margin: 0 cal(50%/(24+(24*1)));
+            }
+            #grid div.vert.first-line {
+                margin-left: cal(50%/(24+(24*1)));
+            }
+            #grid div.vert.cols24 { /* this grid uses 24 cols */
+                margin-right: 0;
+            }
+            
+                #grid div.vert.cols4 { /* reset previous 4 cols grid */
+                    margin-right: cal(50%/(24+(24*1)));
+                }
+                
+}

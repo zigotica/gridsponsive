@@ -4,12 +4,385 @@
 
     CSS developed using Sass/Compass locally.  
     DO NOT EDIT THIS .CSS, it will be overwritten from .SCSS
-    ---------------------------------------------------------------------------------------------------------------- */html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,embed,figure,figcaption,footer,header,hgroup,menu,nav,output,ruby,section,summary,time,mark,audio,video{margin:0;padding:0;border:0;font:inherit;font-size:100%;vertical-align:baseline}html{line-height:1}ol,ul{list-style:none}table{border-collapse:collapse;border-spacing:0}caption,th,td{text-align:left;font-weight:normal;vertical-align:middle}q,blockquote{quotes:none}q:before,q:after,blockquote:before,blockquote:after{content:"";content:none}a img{border:none}article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section,summary{display:block}@font-face{font-family:'H';src:url("../fonts/fakeHelveticaExample.eot");src:url("../fonts/fakeHelveticaExample.eot?#iefix") format("embedded-opentype"),url("../fonts/fakeHelveticaExample.woff") format("woff"),url("../fonts/fakeHelveticaExample.ttf") format("truetype"),url("../fonts/fakeHelveticaExample.svg#fakeHelveticaExample") format("svg");font-weight:normal;font-style:normal}@font-face{font-family:'HL';src:url("../fonts/fakeHelveticaLightExample.eot");src:url("../fonts/fakeHelveticaLightExample.eot?#iefix") format("embedded-opentype"),url("../fonts/fakeHelveticaLightExample.woff") format("woff"),url("../fonts/fakeHelveticaLightExample.ttf") format("truetype"),url("../fonts/fakeHelveticaLightExample.svg#fakeHelveticaLightExample") format("svg");font-weight:normal;font-style:normal}/*! --------------------------------------------------------
+    ---------------------------------------------------------------------------------------------------------------- */
+/*/ -------------------------------------------------------------------- COMPASS MIXINS */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font: inherit;
+  font-size: 100%;
+  vertical-align: baseline;
+}
+
+html {
+  line-height: 1;
+}
+
+ol, ul {
+  list-style: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+caption, th, td {
+  text-align: left;
+  font-weight: normal;
+  vertical-align: middle;
+}
+
+q, blockquote {
+  quotes: none;
+}
+q:before, q:after, blockquote:before, blockquote:after {
+  content: "";
+  content: none;
+}
+
+a img {
+  border: none;
+}
+
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary {
+  display: block;
+}
+
+/*/ -------------------------------------------------------------------- CUSTOM MIXINS */
+/*/ -------------------------------------------------------------------- GENERAL BOX MIXINS */
+/*/ 
+makes element grow vertically, clears floats, and unlike previous fix, allows for overflow to show more content 
+use it in a pseudo as in &:after {@include clearme();}
+*/
+/*/ -------------------------------------------------------------------- PREFIXER */
+/*/ -------------------------------------------------------------------- ANIMATIONS */
+/*/ -------------------------------------------------------------------- SIZE MIXINS */
+/*/ px to rem: https://github.com/bitmanic/rem */
+/*/ px to em, context = element font-size */
+/*/ px to %, context = parent width/height */
+/*/ simple maths */
+/*/ -------------------------------------------------------------------- TIMING VARIABLES */
+/*/ -------------------------------------------------------------------- EXTEND-ABLE PLACEHOLDERS */
+/*/ wont show up in final css, unlike extended classes */
+/*/ -------------------------------------------------------------------- DEBUG STUFF */
+/*/ -------------------------------------------------------------------- BEFORE/AFTER MIXINS */
+/*/ -------------------------------------------------------------------- FONT MIXINS */
+/*/ -------------------------------------------------------------------- COLOR VARIABLES */
+/*/ -------------------------------------------------------------------- colors */
+/*/ -------------------------------------------------------------------- grid examples */
+/*/ -------------------------------------------------------------------- greys */
+/*/ -------------------------------------------------------------------- MEDIA QUERIES GRIDS AND FUNCTIONS */
+/* GRID SETUP MIXINS: Fixed vs Fluid */
+/* 1getGutterWidth size relative to parent grid, given child element num of cols */
+/*/ ------------------------------------------------------- BREAKPOINTS */
+/*/ ------------------------------------------------------- GRIDSETUP */
+/* default grid setup at root level */
+/* created by task with user data */
+/*/ -------------------------------------------------------------------- MODULE IMPORTS */
+/*! --------------------------------------------------------
     GENERAL STYLES, MOBILE FIRST
---------------------------------------------------------- */hr{margin:0;padding:0;border:0;vertical-align:baseline}*,*:before,*:after{-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box}html{background-color:white;color:#4a4a4a;font-size:62.5%;line-height:1}body{background-color:white;position:relative;width:100%;margin:0 auto;font-family:"H",  Helvetica, Arial, sans-serif;font-weight:normal;font-style:normal}a[x-apple-data-detectors=true]{color:inherit !important;background-color:inherit !important}a{text-decoration:none;color:#d2cb15}a:hover{text-decoration:underline}.expandedbox,.expandedbox-light,.expandedbox-med,.expandedbox-dark{position:relative;clear:both;background-color:white;width:100%;max-width:100%}.expandedbox:after,.expandedbox-light:after,.expandedbox-med:after,.expandedbox-dark:after{content:" ";display:block;height:0;clear:both}.expandedbox-light{background-color:#e9e9e9}.expandedbox-med{background-color:#bcbcbc}.expandedbox-dark{background-color:#4a4a4a}.wrapbox{position:relative;clear:both;margin:0 auto;padding:0;max-width:93.6%}@media (min-width: 46.5em){.wrapbox{max-width:90%}}@media (min-width: 86.75em){.wrapbox{max-width:134.8em}}.wrapbox:after{content:" ";display:block;height:0;clear:both}.contentbox{position:relative;clear:both;width:100%}.contentbox:after{content:" ";display:block;height:0;clear:both}.main{width:100%}.mediabox{float:left;margin-left:0%;margin-right:0;width:100%;GRIDWRAP:gridcolumns 4 usedcolumns 4 colsgap 0 offset 0 gap 0% gridcolwidth 20% gridgutterwidth 5% width 100%}.mediabox>div{float:left;margin-left:2.5%;margin-right:2.5%;width:95%;GRIDCOL:gridcolumns 4 usedcolumns 4 colsgap 0 offset 0 gap 0% gridcolwidth 20% gridgutterwidth 5% width 95% CGRATIO 4 bp-mobile 20em bp-tablet 46.5em bp-desk 64em bp-wide 80em bp-extra 86.75em;margin-bottom:20px}@media (min-width: 46.5em){.mediabox{float:left;margin-left:0%;margin-right:0;width:100.0%;GRIDWRAP:gridcolumns 12 usedcolumns 12 colsgap 0 offset 0 gap 0% gridcolwidth 6.9098300562506% gridgutterwidth 1.42350327708273% width 100.0%}.mediabox>div{margin-bottom:0}.mediabox .text{float:left;margin-left:0.711751638541365%;margin-right:0.711751638541365%;width:48.5764967229173%;GRIDCOL:gridcolumns 12 usedcolumns 6 colsgap 0 offset 0 gap 0% gridcolwidth 6.9098300562506% gridgutterwidth 1.42350327708273% width 48.5764967229173% CGRATIO 4.85410196625 bp-mobile 20em bp-tablet 46.5em bp-desk 64em bp-wide 80em bp-extra 86.75em}.mediabox .media{float:left;margin-left:0.711751638541365%;margin-right:0.711751638541365%;width:48.5764967229173%;GRIDCOL:gridcolumns 12 usedcolumns 6 colsgap 0 offset 0 gap 0% gridcolwidth 6.9098300562506% gridgutterwidth 1.42350327708273% width 48.5764967229173% CGRATIO 4.85410196625 bp-mobile 20em bp-tablet 46.5em bp-desk 64em bp-wide 80em bp-extra 86.75em}}.mediabox .media img{display:block;width:100%;height:auto}.mediabox .text{position:relative}@media (min-width: 46.5em){.mediabox .text{position:static}}.mediabox .text p{padding:0 5.26315789473684%}@media (min-width: 46.5em){.mediabox .text p{padding:0 2.93043626674534%}}/*! --------------------------------------------------------
+--------------------------------------------------------- */
+hr {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  vertical-align: baseline;
+}
+
+*,
+*:before,
+*:after {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+html {
+  background-color: white;
+  color: #292e2b;
+  font-size: 62.5%;
+  /* 10/16 */
+  line-height: 1;
+  /* 10/10 */
+}
+
+body {
+  background-color: white;
+  position: relative;
+  width: 100%;
+  margin: 0 auto;
+  opacity: .9;
+  outline: 1px solid red;
+  background-color: white;
+}
+
+a[x-apple-data-detectors=true] {
+  color: inherit !important;
+  background-color: inherit !important;
+}
+
+a {
+  text-decoration: none;
+  color: #2ecc71;
+}
+a:hover {
+  text-decoration: underline;
+}
+
+/* -------------------------------------------------------- MAIN WRAPPER, SECTIONS */
+/* expendedbox gets 100% full width */
+.expandedbox, .expandedbox-light, .expandedbox-med {
+  position: relative;
+  clear: both;
+  background-color: white;
+  width: 100%;
+  max-width: 100%;
+  opacity: .9;
+  outline: 1px solid red;
+  background-color: white;
+}
+.expandedbox:after, .expandedbox-light:after, .expandedbox-med:after {
+  content: " ";
+  display: block;
+  height: 0;
+  clear: both;
+}
+
+.expandedbox-light {
+  background-color: whitesmoke;
+}
+
+.expandedbox-med {
+  background-color: #bcbcbc;
+}
+
+/* wrapbox adjust margins depending on mediaqueries */
+.wrapbox {
+  position: relative;
+  clear: both;
+  margin: 0 auto;
+  padding: 0;
+}
+.wrapbox:after {
+  content: " ";
+  display: block;
+  height: 0;
+  clear: both;
+}
+
+/*/ CUSTOM MAXW FOR WRAPBOX */
+/*/ ------------------------------------------------------- CONTENT MAXW */
+/* default breakpoint (0) */
+@media (min-width: 0) {
+  .wrapbox {
+    max-width: 240px;
+  }
+}
+/* $bp-mobile breakpoint (380px) */
+@media (min-width: 380px) {
+  .wrapbox {
+    max-width: 320px;
+  }
+}
+/* $bp-tablet breakpoint (560px) */
+@media (min-width: 560px) {
+  .wrapbox {
+    max-width: 90%;
+  }
+}
+/* content boxes get 100% of container (typically a wrapbox) */
+.contentbox {
+  position: relative;
+  clear: both;
+  width: 100%;
+}
+.contentbox:after {
+  content: " ";
+  display: block;
+  height: 0;
+  clear: both;
+}
+
+/*! --------------------------------------------------------
     MENU STYLES
---------------------------------------------------------- *//*! --------------------------------------------------------
+--------------------------------------------------------- */
+/*! --------------------------------------------------------
     COMPONENT STYLES
---------------------------------------------------------- *//*! --------------------------------------------------------
+--------------------------------------------------------- */
+/* -------------------------------------------------------- CODE EXAMPLES */
+.example p {
+  float: left;
+  margin-left: 10px;
+  margin-right: 10px;
+  width: 100px;
+  /* shows info in devtools element/styles panel, not valid css thus gets disabled by browser */
+  GRIDCOL: gridcolumns 4 usedcolumns 2 colsgap 0 offset 0 gap 0px colw 40px gutw 20px width 100px CGRATIO 2;
+  margin-bottom: 20px;
+}
+@media (min-width: 380px) {
+  .example p {
+    float: left;
+    margin-left: 10px;
+    margin-right: 10px;
+    width: 300px;
+    /* shows info in devtools element/styles panel, not valid css thus gets disabled by browser */
+    GRIDCOL: gridcolumns 4 usedcolumns 4 colsgap 0 offset 0 gap 0px colw 60px gutw 20px width 300px CGRATIO 3;
+  }
+}
+@media (min-width: 560px) {
+  .example p {
+    /* 1 getGutterWidth * $fold = 1 colw */
+    float: left;
+    margin-left: 1.0416666666666667%;
+    margin-right: 1.0416666666666667%;
+    width: 31.250000000000004%;
+    /* shows info in devtools element/styles panel, not valid css thus gets disabled by browser */
+    GRIDCOL: gridcolumns 24 usedcolumns 8 colsgap 0 offset 0 gap 0% colw 2.0833333333333335% gutw 2.0833333333333335% width 31.250000000000004% CGRATIO 1;
+  }
+}
+
+.example2 p {
+  float: left;
+  margin-left: 10px;
+  margin-right: 10px;
+  width: 220px;
+  /* shows info in devtools element/styles panel, not valid css thus gets disabled by browser */
+  GRIDCOL: gridcolumns 4 usedcolumns 4 colsgap 0 offset 0 gap 0px colw 40px gutw 20px width 220px CGRATIO 2;
+  margin-bottom: 20px;
+}
+@media (min-width: 380px) {
+  .example2 p {
+    float: left;
+    margin-left: 10px;
+    margin-right: 10px;
+    width: 140px;
+    /* shows info in devtools element/styles panel, not valid css thus gets disabled by browser */
+    GRIDCOL: gridcolumns 4 usedcolumns 2 colsgap 0 offset 0 gap 0px colw 60px gutw 20px width 140px CGRATIO 3;
+  }
+}
+@media (min-width: 560px) {
+  .example2 p {
+    /* 1 getGutterWidth * $fold = 1 colw */
+    float: left;
+    margin-left: 1.0416666666666667%;
+    margin-right: 1.0416666666666667%;
+    width: 47.91666666666666%;
+    /* shows info in devtools element/styles panel, not valid css thus gets disabled by browser */
+    GRIDCOL: gridcolumns 24 usedcolumns 12 colsgap 0 offset 0 gap 0% colw 2.0833333333333335% gutw 2.0833333333333335% width 47.91666666666666% CGRATIO 1;
+  }
+}
+
+.example3 p {
+  float: left;
+  margin-left: 10px;
+  margin-right: 10px;
+  width: 100px;
+  /* shows info in devtools element/styles panel, not valid css thus gets disabled by browser */
+  GRIDCOL: gridcolumns 4 usedcolumns 2 colsgap 0 offset 0 gap 0px colw 40px gutw 20px width 100px CGRATIO 2;
+  margin-bottom: 20px;
+}
+@media (min-width: 380px) {
+  .example3 p {
+    float: left;
+    margin-left: 10px;
+    margin-right: 10px;
+    width: 300px;
+    /* shows info in devtools element/styles panel, not valid css thus gets disabled by browser */
+    GRIDCOL: gridcolumns 4 usedcolumns 4 colsgap 0 offset 0 gap 0px colw 60px gutw 20px width 300px CGRATIO 3;
+  }
+}
+@media (min-width: 560px) {
+  .example3 p {
+    /* 1 getGutterWidth * $fold = 1 colw */
+    float: left;
+    margin-left: 1.0416666666666667%;
+    margin-right: 1.0416666666666667%;
+    width: 22.916666666666668%;
+    /* shows info in devtools element/styles panel, not valid css thus gets disabled by browser */
+    GRIDCOL: gridcolumns 24 usedcolumns 6 colsgap 0 offset 0 gap 0% colw 2.0833333333333335% gutw 2.0833333333333335% width 22.916666666666668% CGRATIO 1;
+  }
+}
+
+/* -------------------------------------------------------- MAIN FOOTER */
+footer {
+  background-color: #292e2b;
+  color: white;
+  opacity: .9;
+  outline: 1px solid red;
+  background-color: #292e2b;
+}
+
+/*! --------------------------------------------------------
     FORM STYLES
---------------------------------------------------------- */::-webkit-input-placeholder{font-family:"HL", Helvetica, Arial, sans-serif;font-weight:normal;font-style:normal;color:#e9e9e9}::-moz-placeholder{font-family:"HL", Helvetica, Arial, sans-serif;font-weight:normal;font-style:normal;color:#e9e9e9}:-moz-placeholder{font-family:"HL", Helvetica, Arial, sans-serif;font-weight:normal;font-style:normal;color:#e9e9e9}:-ms-input-placeholder{font-family:"HL", Helvetica, Arial, sans-serif;font-weight:normal;font-style:normal;color:#e9e9e9}input[type="checkbox"],input[type="radio"]{display:none}.lt-ie9 input[type="checkbox"],.lt-ie9 input[type="radio"]{display:inline-block}input[type="radio"]+label,input[type="checkbox"]+label{position:relative;padding-left:44px}.lt-ie9 input[type="radio"]+label,.lt-ie9 input[type="checkbox"]+label{text-indent:0}input[type="radio"]+label:before,input[type="checkbox"]+label:before{position:absolute;top:0px;left:0;content:"";display:inline-block;width:32px;height:32px;padding:0;margin:0;background-position:0;background-size:cover}.lt-ie9 input[type="radio"]+label:before,.lt-ie9 input[type="checkbox"]+label:before{display:none;background-image:none}
+--------------------------------------------------------- */
+/* -------------------------------------------------------- INPUT PLACEHOLDERS */
+::-webkit-input-placeholder {
+  color: whitesmoke;
+}
+
+::-moz-placeholder {
+  color: whitesmoke;
+}
+
+:-moz-placeholder {
+  color: whitesmoke;
+}
+
+:-ms-input-placeholder {
+  color: whitesmoke;
+}
+
+/* major beautifiers from http://goo.gl/o3F6A and http://goo.gl/tF2Lv    
+/* ------------------------------------------------------ radio check */
+input[type="checkbox"],
+input[type="radio"] {
+  display: none;
+}
+.lt-ie9 input[type="checkbox"], .lt-ie9
+input[type="radio"] {
+  display: inline-block;
+}
+
+input[type="radio"] + label,
+input[type="checkbox"] + label {
+  position: relative;
+  padding-left: 44px;
+}
+.lt-ie9 input[type="radio"] + label, .lt-ie9
+input[type="checkbox"] + label {
+  text-indent: 0;
+}
+
+input[type="radio"] + label:before,
+input[type="checkbox"] + label:before {
+  position: absolute;
+  top: 0px;
+  left: 0;
+  content: "";
+  display: inline-block;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  margin: 0;
+  background-position: 0;
+  background-size: cover;
+}
+.lt-ie9 input[type="radio"] + label:before, .lt-ie9
+input[type="checkbox"] + label:before {
+  display: none;
+  background-image: none;
+}

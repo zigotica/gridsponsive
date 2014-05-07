@@ -1,0 +1,131 @@
+/* Use MS box model: */
+*,
+*:before,
+*:after {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+/*! --------------------------------------------------------
+    GRID COMMON STYLES
+--------------------------------------------------------- */
+#grid {
+  /*background: #333;*/
+  min-height: 9999px;
+  left: 50%;
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  z-index: -1;
+}
+
+#grid div.horiz-container {
+  position: absolute;
+  width: 100%;
+}
+
+#grid div.horiz {
+  border-bottom: 1px dotted #aaa;
+  margin: 0;
+  overflow: hidden;
+  padding: 0;
+  width: 100%;
+  height: 10px;
+}
+
+#grid div.horiz.odd {
+  border-bottom: 1px dotted #666;
+}
+
+#grid div.vert-container {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+#grid div.vert {
+  display: inline-block;
+  height: 100%;
+  opacity: 0.25;
+}
+
+/* Import grid helper definitions created via user responses */
+/*/ ------------------------------------------------------- GRID VISUAL HELPER */
+/* default GRID */
+@media (min-width: 0) {
+  #grid {
+    margin-left: -120px;
+    max-width: 240px;
+  }
+
+  #grid div.vert {
+    background: red;
+    width: 40px;
+    margin: 0 10px;
+  }
+
+  #grid div.vert.first-line {
+    margin-left: 10px;
+  }
+
+  #grid div.vert.cols4 {
+    /* this grid uses 4 cols */
+    margin-right: 0;
+  }
+}
+/* $bp-mobile GRID */
+@media (min-width: 380px) {
+  #grid {
+    margin-left: -160px;
+    max-width: 320px;
+  }
+
+  #grid div.vert {
+    background: green;
+    width: 60px;
+    margin: 0 10px;
+  }
+
+  #grid div.vert.first-line {
+    margin-left: 10px;
+  }
+
+  #grid div.vert.cols4 {
+    /* this grid uses 4 cols */
+    margin-right: 0;
+  }
+
+  #grid div.vert.cols4 {
+    /* reset previous 4 cols grid */
+    margin-right: 10px;
+  }
+}
+/* $bp-tablet GRID */
+@media (min-width: 560px) {
+  #grid {
+    margin-left: -45%;
+    max-width: 90%;
+  }
+
+  #grid div.vert {
+    background: blue;
+    width: 2.0833333333333335%;
+    margin: 0 1.0416666666666667%;
+  }
+
+  #grid div.vert.first-line {
+    margin-left: 1.0416666666666667%;
+  }
+
+  #grid div.vert.cols24 {
+    /* this grid uses 24 cols */
+    margin-right: 0;
+  }
+
+  #grid div.vert.cols4 {
+    /* reset previous 4 cols grid */
+    margin-right: 1.0416666666666667%;
+  }
+}

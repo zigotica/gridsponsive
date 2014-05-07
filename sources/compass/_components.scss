@@ -2,3 +2,56 @@
 /*! --------------------------------------------------------
     COMPONENT STYLES
 --------------------------------------------------------- */
+
+
+/* -------------------------------------------------------- CODE EXAMPLES */
+.example{
+    p { 
+        @include gridreset; @include gridcol(2);
+        margin-bottom: 20px;
+
+        @include bpmin($bp-mobile) {
+            @include gridcol(4);
+        }
+
+        @include bpmin($bp-tablet) {
+            @include gridcol(8);
+        }
+    }
+}
+.example2{
+    p { 
+        @include gridreset; @include gridcol(4);
+        margin-bottom: 20px;
+
+        @include bpmin($bp-mobile) {
+            @include gridcol(2);
+        }
+
+        @include bpmin($bp-tablet) {
+            @include gridcol(12);
+        }
+    }
+}
+.example3{
+    p { 
+        @include gridreset; @include gridcol(2);
+        margin-bottom: 20px;
+
+        @include bpmin($bp-mobile) {
+            @include gridcol(4);
+        }
+
+        @include bpmin($bp-tablet) {
+            @include gridcol(6);
+        }
+    }
+}
+
+
+/* -------------------------------------------------------- MAIN FOOTER */
+footer{
+    background-color: $grey_dark;
+    color: white;
+    @include debug(red, $grey_dark);
+}

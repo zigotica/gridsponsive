@@ -10735,7 +10735,7 @@ if ( typeof module === "object" && module && typeof module.exports === "object" 
   ----------------------------------------------------------------------------------------------------- */
 
 var ZGTC = {
-    debug : 0
+    debug : 1
 };
 
 
@@ -11161,8 +11161,8 @@ $(function() {
   
     // ---------------------------------------------------------------- DEBUG 
     if(ZGTC.debug == 1) {
-        // add Grids visual help:
-        ['../../sources/js/grids/grid.js','../../sources/js/grids/grid.css'].forEach(function(src) {
+        console.log( "------------ Grids visual help ------------" );
+        ['../public/css/grid.js','../public/css/gridhelper.css'].forEach(function(src) {
             ZGTC.Utils.injectFile(src);
         });
     }

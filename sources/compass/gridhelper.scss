@@ -1,0 +1,52 @@
+/* Use MS box model: */
+*,
+*:before,
+*:after { 
+    -webkit-box-sizing: border-box; 
+       -moz-box-sizing: border-box; 
+            box-sizing: border-box;
+}
+
+/*! --------------------------------------------------------
+    GRID COMMON STYLES
+--------------------------------------------------------- */
+#grid {
+    /*background: #333;*/
+    min-height: 9999px;
+    left: 50%;
+    overflow: hidden;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index:-1;
+}
+#grid div.horiz-container {
+    position: absolute;
+    width: 100%;
+}
+#grid div.horiz {
+    border-bottom: 1px dotted #aaa;
+    margin: 0;
+    overflow: hidden;
+    padding: 0;
+    width: 100%;
+    height: 10px;  
+}
+#grid div.horiz.odd {
+    border-bottom: 1px dotted #666;
+}
+#grid div.vert-container {
+    position: absolute; width: 100%; height: 100%;
+}
+#grid div.vert {
+    display: inline-block;
+    height: 100%;
+    opacity: 0.25;
+}
+
+
+/* Import grid helper definitions created via user responses */
+@function cal($whatever) {
+    @return $whatever *1;
+}
+@import "gridhelpercustom";

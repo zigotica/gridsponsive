@@ -178,7 +178,7 @@ $DURATION_OUT : 0.5s; // 0.75s;
 
 /*/ -------------------------------------------------------------------- EXTEND-ABLE PLACEHOLDERS */
 
-/*/ wont show up in final css, unline extended classes */
+/*/ wont show up in final css, unlike extended classes */
 %one {}
 %two {}
 
@@ -186,7 +186,7 @@ $DURATION_OUT : 0.5s; // 0.75s;
 /*/ -------------------------------------------------------------------- DEBUG STUFF */
 $DEBUGMODE : 1; 
 @mixin debug($color:red, $bg:green) { 
-    @if $DEBUGMODE == 0 {
+    @if $DEBUGMODE == 1 {
         opacity: .9;
         outline: 1px solid $color;
         background-color: $bg;

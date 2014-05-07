@@ -17,7 +17,7 @@ I have used several grid systems in the past, but always ended adapting lots of 
 Gridsponsive requires:
 
 * [Compass](http://compass-style.org/): The core of the Grids' setup and calculations uses mixins and functions, thus some sort of preprocessing was needed. SCSS syntax was preferred over SASS, LESS, etc.
-* [GruntJS](http://gruntjs.com/): Gridsponsive itself would not strictly require it, but since I am using the boilerplate to include basic JS (jshint, concatenate, uglify), and in most projects I am using [Grunticon](https://github.com/filamentgroup/grunticon) to generate icons, Grunt was a no-brainer. Also, it has a nice livereload task.
+* [GruntJS](http://gruntjs.com/): Gridsponsive itself would not strictly require it, but since I am using the boilerplate to include basic JS (jshint, concatenate, uglify), and in most projects I am using [Grunticon](https://github.com/filamentgroup/grunticon) to generate icons, Grunt was a no-brainer. Also, it has a nice livereload task. This requirement might be dropped/split in a near future to move the boilerplate into a new repo.
 
 ## Installation
 ### Compass
@@ -35,21 +35,16 @@ To avoid distributing these packages in your project just add them into your .gi
 We are using two-step process to build the public files: 
 
 * Type `compass watch` in a terminal tab to take care of the SCSS files and convert to CSS (config.rb sets some customisable vars, such as `output_style`). 
-* Type `grunt` in another terminal tab. This will take care of the Javascript files and build the public js. You can also use the live-reload feature by typing `grunt live`, which will trigger any html, js or scss change. Compass is not watched from Grunt since ethe task is quite slow, we might give it another try anytime soon and/or move to [GulpJS](http://gulpjs.com/).
+* Type `grunt` in another terminal tab. This will take care of the Javascript files and build the public js. You can also use the live-reload feature by typing `grunt live`, which will trigger any html, js or scss change. Compass is not watched from Grunt since the task is quite slow, we might give it another try anytime soon and/or move to [GulpJS](http://gulpjs.com/).
 
+## How to create Grids and Breakpoints
+I created a Ruby script to automatically create breakpoints and Grid variables and functions by asking simple questions through the console. Just open a third terminal tab and run `ruby gridsetup.rb`, then answer some questions. Remember to have a terminal tab open with `compass watch` and another with `grunt live` running.
 
+## Gridsponsive use with our styles
+### Mediaqueries
+When questions are finished the system creates variables and mixins that will later be used within our own styles. We can target specific breakpoints using `bpmin`, `bpmax` and `bpminmax` mixins. These contain a grid setup based on the questions answered before, which allows us to reset/change grid between breakpoints. 
 
-## Basic Documentation
-### Breakpoints
-For each mediaquery you have to define a breakpoint variable, either using normal px value or converting to EM unit with `MQem` helper:
-
-```
-$bp-mobile  : MQem(320);    //: 20em
-$bp-tablet  : MQem(744);    //: 46.5em
-$bp-desk    : MQem(1024);   //: 64em
-$bp-extra   : MQem(1348,40);//: 86.75em
-```
-Once defined, we can target specific breapoints using helpers (`bpmin`, `bpmax`, `bpminmax`) that convert to mediaqueries, as in:
+For instance, if we had created 3 breakpoints, named tablet, desk and extra, we could do:
 
 ```
 p {
@@ -62,24 +57,12 @@ p {
     }
 }
 ```
-We can also change default values for these two variables:
-
-```
-$USEGOLDENDEFAULT : 0;
-$CGDEFAULT : 2;
-```
-First one tells next Grid functions to use Golden ratio as a multiplier for column/gutter ratio. By default it is not used. The later tells Gridsponsive the default column/gutter ratio is 2.
 
 ### The grid
-Did I hear semantic grid system? It's pretty easy, instead of adding .col12 or .span4 classes to your markup, we can use semantic markup and define layout in CSS using two functions: 
-
-`gridsetup(c, r, g)` can have arguments: c number of columns used in layout, r ratio between column/gutter, and g if this ratio is factored by golden number. For instance `include gridsetup(4,4);` creates a layout ready for 4 coluns where columns measure 4 times gutter width, while `include gridsetup(4,2,1);` creates a layout ready for 4 coluns where columns measure 2*1.61803398875 times gutter width.
-
-Once we have setup layout for this mediaquery, we can assign column sizes to inside selectors using `gridwrap`/`gridcol`. They work similarly, but `gridwrap` collapses external margins so we can nest grids inside other grids. Both functions have same parameters (n, colsgap, offset, float): n number of used columns for this selector, colsgap number of gap columns left aside, offset px/em besides gap,  float direction. Default values are setup columns, 0, 0, left. Example:
+Did I hear semantic grid system? It's pretty easy, instead of adding .col12 or .span4 classes to your markup, we can use semantic markup and define layout in CSS using `gridwrap`/`gridcol` mixins. They work similarly, but `gridwrap` collapses external margins so we can nest grids inside other grids. Both functions have same parameters (n, colsgap, offset, float): n number of used columns for this selector, colsgap number of gap columns left aside, offset px/em besides gap,  float direction. Default values are setup columns, 0, 0, left. Example:
 
 ```
 div {
-    include gridsetup(4,4);
     @include gridwrap(4); /* takes all space including outer margins */
 
     span { 
@@ -91,34 +74,32 @@ div {
 }
 ```
 
-This way my markup will be semantic since I'm not adding size-meaning to elements that will change measures with media queries. 
+This way your markup will be semantic since you're not adding size-meaning to elements that will change measures with media queries. 
 
-We can also defined inner paddings using `relGutW` function, that takes number of used columns in that selector, then calculates internally the effective 1 gutter size as relative measure unit. Using same example above:
+Since different grid columns and proportions are allowed, we need to setup which one to use within each breakpoint/mediaquery. This is managed *automatically* by `bpmin`, `bpmax` and `bpminmax` mixins. For instance:
 
 ```
 p {
-    @include gridcol(2); 
-    padding: 0 @include relGutW(2); /* sides padding = 1 gutter width */
+	@include gridreset; @include gridcol(2); // this could be 4 columns 40px:20px column/gutter ratio
+    @include bpmin($bp-tablet) {
+        @include gridcol(2); // this could be 4 columns 60px:20px column/gutter ratio
+    }
+    @include bpminmax($bp-desk, $bp-extra) {
+        @include gridcol(4); // this could be 24 columns 1:1 column/gutter ratio
+    }
 }
 ```
 
-### Goodies
-
-Gridsponsive comes with some variables, mixins and functions to make your life easier, most used ones are:
-
-
-* `prefixer` helps you… prefix stuff with -webkit-, -moz-, -ms- and -o-
-* `rem` lets you use px fonts that are then converted to a px fallback + rem unit.
-* There's a `DEBUGMODE` variable (boolean 0/1, default 0) that applies specific background colors and opacity to test boxes width/height, visualize grids beneath layout, etc. Example
+As you can see, when we have more than one grid and you call `gridwrap`/`gridcol` mixins outside of `bpmin`, `bpmax` and `bpminmax` mediaqueries, we need to include a `@include gridreset;` (in this case it's not automatic since we are outside those 'magic' mixins), for example: 
 
 ```
-$DEBUGMODE : 1; 
-.expandedbox {
-  @include debug(red, white);
+.selector {
+    @include gridreset; @include gridcol(4); // this could be 4 columns 40px:20px column/gutter ratio
+    @include bpmin($bp-tablet) { 
+        @include gridcol(7); // this could be 24 columns 1:1 column/gutter ratio
+    }
 }
 ```
-
-* You can optionally test your layout using the grid.js that will paint columns for each media query. This is exportable from Gruntfile.js (you will need to add grid.js to the build process). This has yet to be documented, and eventually sync'ed from generated Grids.
 
 ### Basic layout blocks
 
@@ -141,15 +122,10 @@ Gridsponsive does not setup any visual design, but it comes with 3 basic layout 
     clear: both;
     margin: 0 auto;
     padding: 0;
-    max-width: 93.6%; /* 93.6% is nice for 320px full -> 300px content */
-    @include bpmin($bp-tablet) { /* 46.5em*DEFAULT!16px=744px */ 
-        max-width: 90%; /* max-width: em(744, 10); would fix content, % is fluid */
-    }
-    @include bpmin($bp-extra) { /* 84.25em*DEFAULT!16px=1348px */ 
-        max-width: em(1348,10);
-    }
     &:after { @include clearme(); }
 }
+/*/ CUSTOM MAXW FOR WRAPBOX */
+@import "gridcustommaxw";
 
 /* content boxes get 100% of container (typically a wrapbox) */
 .contentbox {
@@ -159,13 +135,51 @@ Gridsponsive does not setup any visual design, but it comes with 3 basic layout 
     &:after {@include clearme();}
 }
 ```
+As you can see, we import `gridcustommaxw` file, which is created answering the questions to the ruby script and automatically calculates the `max-width` values for each grid/breakpoint. Easy-peasy. An example HTML markup would be
+
+```
+	<div class="expandedbox">
+	    <div class="wrapbox">
+	        <div class="contentbox">
+	        	<p>Lorem ipsum dolor sit amet.</p>        
+	        </div>
+	    </div>
+	</div>
+```
+
+### Goodies
+
+Gridsponsive comes with some variables, mixins and functions to make your life easier, most used ones are:
+
+
+* `prefixer` helps you… prefix stuff with -webkit-, -moz-, -ms- and -o-
+* `rem` lets you use px fonts that are then converted to a px fallback + rem unit.
+* There's a `DEBUGMODE` variable (boolean 0/1, default 0) that applies specific background colors and opacity to test boxes width/height, visualize grids beneath layout, etc. Example
+
+```
+$DEBUGMODE : 1; 
+.expandedbox {
+  @include debug(red, white);
+}
+```
+
+* We can also define inner paddings using `gutterW` function, that takes number of used columns in that selector, then calculates internally the effective 1 gutter size as relative measure unit. Using same example above:
+
+```
+p {
+    @include gridcol(2); 
+    padding: 0 @include gutterW(2); /* sides padding = 1 gutter width */
+}
+```
+
+* You can optionally test your layout using the grid.js that will paint columns for each media query. This is exportable from Gruntfile.js (you will need to add grid.js to the build process). It needs a server to inject the files, using `grunt live` task is ok. This helper is sync'ed with values coming from answers to the ruby script. **Important note: In order to view the grid columns for development, which are injected using JS, you need to use a server, for instance localhost created by livereload grunt task.**
 
 
 ## TO-DO
 
-* (under development) Dedicated site with more detailed documentation and demos :-)
-* (under development) Ruby console script to automatically create breakpoints and Grid variables and functions by asking simple questions to developer and writting to SCSS file. 
-* (under development) Sync grids.js/grids.css helpers with values used at Grids creation
+- [ ] (under development) Dedicated site with more detailed documentation and demos :-)
+- [x] Ruby console script to automatically create breakpoints and Grid variables and functions by asking simple questions to developer and writting to SCSS file. 
+- [x] Sync grids.js/grids.css helpers with values used at Grids creation
 
 ## Complaints?
 Use the issue tracker, send pull requests, the usual polite manners. Thanx.

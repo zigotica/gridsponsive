@@ -1,44 +1,34 @@
 
-/*/ -------------------------------------------------------------------- FONT-FACES */
-@font-face {
-    font-family: 'H';
-    src: url('../fonts/fakeHelveticaExample.eot');
-    src: url('../fonts/fakeHelveticaExample.eot?#iefix') format('embedded-opentype'),
-         url('../fonts/fakeHelveticaExample.woff') format('woff'),
-         url('../fonts/fakeHelveticaExample.ttf') format('truetype'),
-         url('../fonts/fakeHelveticaExample.svg#fakeHelveticaExample') format('svg');
-    font-weight: normal;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: 'HL';
-    src: url('../fonts/fakeHelveticaLightExample.eot');
-    src: url('../fonts/fakeHelveticaLightExample.eot?#iefix') format('embedded-opentype'),
-         url('../fonts/fakeHelveticaLightExample.woff') format('woff'),
-         url('../fonts/fakeHelveticaLightExample.ttf') format('truetype'),
-         url('../fonts/fakeHelveticaLightExample.svg#fakeHelveticaLightExample') format('svg');
-    font-weight: normal;
-    font-style: normal;
-}
-
-
 /*/ -------------------------------------------------------------------- FONT MIXINS */
 
 @mixin font($f) {
-    // each needs a @font-face definition, see fake examples above
-    @if $f == "H"  { font-family: "H",  Helvetica, Arial, sans-serif; }  
-    @if $f == "HL" { font-family: "HL", Helvetica, Arial, sans-serif; }  
-    font-weight: normal; font-style: normal; 
+    /* CONSOLA */
+    @if $f == "CD" { font-family: 'Source Code Pro', Courier; font-weight: 400; }
+
+    /* TUNGSTEN */
+    @if $f == "TT" { font-family: 'Tungsten A', 'Tungsten B', sans-serif; font-weight: 800; }
+
+    /* WHITNEY SCREENSMART */
+    @if $f == "WL" { font-family: 'Whitney SSm A', 'Whitney SSm B', sans-serif; font-weight: 300; }
+    @if $f == "WM" { font-family: 'Whitney SSm A', 'Whitney SSm B', sans-serif; font-weight: 500; }
+
+    /* all of them */
+    font-style: normal; 
 }
 
 
 /*/ -------------------------------------------------------------------- COLOR VARIABLES */
 
 /*/ -------------------------------------------------------------------- colors */
-$colormain : #d2cb15;
-$coloralt  : #d28015;
+$colormain : #2ECC71;
+
+
+/*/ -------------------------------------------------------------------- grid examples */
+$colbg_lig : #EAF4EE;
+$colbg_med : #D1E1D7;
+$colbg_dark: #B1BCB5;
+
 /*/ -------------------------------------------------------------------- greys */
-$grey_lig  : #e9e9e9;
+$grey_lig  : #F5F5F5;
 $grey_med  : #bcbcbc;
-$grey_dark : #4a4a4a;
+$grey_dark : #292E2B;
