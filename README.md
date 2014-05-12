@@ -34,8 +34,12 @@ To avoid distributing these packages in your project just add them into your .gi
 
 We are using two-step process to build the public files: 
 
-* Type `compass watch` in a terminal tab to take care of the SCSS files and convert to CSS (config.rb sets some customisable vars, such as `output_style`). 
-* Type `grunt` in another terminal tab. This will take care of the Javascript files and build the public js. You can also use the live-reload feature by typing `grunt live`, which will trigger any html, js or scss change. Compass is not watched from Grunt since the task is quite slow, we might give it another try anytime soon and/or move to [GulpJS](http://gulpjs.com/).
+* Type `compass watch` in a terminal tab to watch for changes in SCSS files and convert to CSS (config.rb sets some customisable vars, such as `output_style`). You can keep this tab open and task running in order to trigger succesive changes.
+* Type `grunt` in another terminal tab. This will take the Javascript files and build the public js. You can also use the live-reload feature by typing `grunt live`, which will trigger any html, js or scss change and force a rebuild. Compass is not watched from Grunt since the task is quite slow, we might give it another try anytime soon and/or move to [GulpJS](http://gulpjs.com/). You can keep this tab open and `grunt live` running in order to trigger succesive changes.
+
+Now that public files are modified automatically, we will tell the browser to reload the page every time a build is made. 
+
+* You will need to install Live Reload extension in your browser. 
 
 ## How to create Grids and Breakpoints
 I created a Ruby script to automatically create breakpoints and Grid variables and functions by asking simple questions through the console. Just open a third terminal tab and run `ruby gridsetup.rb`, then answer some questions. Remember to have a terminal tab open with `compass watch` and another with `grunt live` running.
