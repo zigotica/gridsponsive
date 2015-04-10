@@ -1,78 +1,78 @@
 
 /*/ -------------------------------------------------------------------- MEDIA QUERIES GRIDS AND FUNCTIONS */
 
-$BASEPX : 16 !default;
-$GOLDEN : 1.61803398875;
-$USEGOLDENDEFAULT : 0;
-$CGDEFAULT : 4;
-$CGRATIO : 0;
-$grid_columns: 4;
-$FLUID: 1;
+$BASEPX : 16 !global;
+$GOLDEN : 1.61803398875 !global;
+$USEGOLDENDEFAULT : 0 !global;
+$CGDEFAULT : 4 !global;
+$CGRATIO : 0 !global;
+$grid_columns: 4 !global;
+$FLUID: 1 !global;
 
 // these two are recalculated within functions/mixins, needed to be set globally
-$grid_col_width: 0;
-$grid_gutter_width: 0; 
+$grid_col_width: 0 !global;
+$grid_gutter_width: 0 !global;
 
 @mixin getGolden($fold:$CGDEFAULT,$g:$USEGOLDENDEFAULT) {
     @if($fold ==  0) {
         /* 1 getGutterWidth = 1 colw */
-        $CGRATIO : 0;
+        $CGRATIO : 0 !global;
     }
     @else if($g == 1){
         /* 1 getGutterWidth * $CGRATIO = 1 colw */
-        $CGRATIO : $GOLDEN * $fold;
+        $CGRATIO : $GOLDEN * $fold !global;
     }
     @else {
         /* 1 getGutterWidth * $fold = 1 colw */
-        $CGRATIO : $fold;
+        $CGRATIO : $fold !global;
     }
 }
 
 @mixin getCols($c:4) {
-    $grid_columns: $c;
+    $grid_columns: $c !global;
 }
 
 /* GRID SETUP MIXINS: Fixed vs Fluid */
 @mixin gridFixedSetup($c,$cw,$gw) {
-    $grid_gutter_width: $gw;
-    $grid_col_width: $cw;
-    $grid_total_width: $c*($cw+$gw);
+    $grid_gutter_width: $gw !global;
+    $grid_col_width: $cw !global;
+    $grid_total_width: $c*($cw+$gw) !global;
     @include getCols($c);
-    $FLUID: 0;
-    $CGRATIO : cal($cw/$gw);
+    $FLUID: 0 !global;
+    $CGRATIO : cal($cw/$gw) !global;
 }
 @mixin gridSetup($c,$r:$CGDEFAULT,$g:$USEGOLDENDEFAULT) {
-    @include getGolden($r,$g); 
+    @include getGolden($r,$g);
     @include getCols($c);
-    $grid_total_width: 100%;
-    $grid_gutter_width: getGutterWidth();
-    $grid_col_width: getColWidth();
-    $FLUID: 1;
+    $grid_total_width: 100% !global;
+    $grid_gutter_width: getGutterWidth() !global;
+    $grid_col_width: getColWidth() !global;
+    $FLUID: 1 !global;
 }
 @function getGutterWidth() {
-    @if($CGRATIO ==  0) { 
-        /* 1 getGutterWidth = 1 colw; 
+    @if($CGRATIO ==  0) {
+        /* 1 getGutterWidth = 1 colw;
         ie. 4 cols -> cal(100/(4*2))*1% -> 12.5% -> 320*0.125 = 40
         */
         @return cal(100/($grid_columns*2))*1%;
     }
     @else {
-        /* 1 getGutterWidth = 1 colw / $CGRATIO 
+        /* 1 getGutterWidth = 1 colw / $CGRATIO
         ie. 4 cols and CGRATIO=4.85 -> cal(100/((4*4.85)+4))*1% -> 4.27350427% -> 320*0.0427350427 = 13.68
         */
         @return cal(100/(($grid_columns*$CGRATIO)+$grid_columns))*1%;
     }
 }
 @function getColWidth() {
-    @if($CGRATIO ==  0) { 
-        /* 1 colw = 1 getGutterWidth 
+    @if($CGRATIO ==  0) {
+        /* 1 colw = 1 getGutterWidth
         ie. 4 cols -> 12.5% -> 320*0.125 = 40
         (40+40)*4 = 320
         */
         @return getGutterWidth();
     }
     @else {
-        /* 1 colw = 1 getGutterWidth * $CGRATIO 
+        /* 1 colw = 1 getGutterWidth * $CGRATIO
         ie. 4 cols and CGRATIO=4.85 -> 4.27350427% * 4.85 -> 20,7264957% -> 320*0.207264957 = 66.32
         (66.32+13.68)*4 = 320
         */
@@ -82,7 +82,7 @@ $grid_gutter_width: 0;
 
 /* 1getGutterWidth size relative to parent grid, given child element num of cols */
 @function gutterW($c:4) {
-    /* 
+    /*
     100 = ($c - 1)·x + $c·CGRATIO·x -> x = 100 / ( ($c - 1) + $c·CGRATIO)
     */
     @return ( 100 / ( ($c - 1) + ($c * $CGRATIO) )) *1%;
@@ -107,7 +107,7 @@ $grid_gutter_width: 0;
     }
     @else {
         margin-right: ( $grid_gutter_width / 2 ) + $offset + $gap;
-        margin-left: ( $grid_gutter_width / 2 ); 
+        margin-left: ( $grid_gutter_width / 2 );
     }
     $width: ( ($grid_gutter_width + $grid_col_width) * $n ) - $grid_gutter_width;
     width: $width;

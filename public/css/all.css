@@ -58,7 +58,7 @@ a img {
   border: none;
 }
 
-article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary {
+article, aside, details, figcaption, figure, footer, header, hgroup, main, menu, nav, section, summary {
   display: block;
 }
 
@@ -113,7 +113,7 @@ hr {
 
 html {
   background-color: white;
-  color: #292e2b;
+  color: #292E2B;
   font-size: 62.5%;
   /* 10/16 */
   line-height: 1;
@@ -137,7 +137,7 @@ a[x-apple-data-detectors=true] {
 
 a {
   text-decoration: none;
-  color: #2ecc71;
+  color: #2ECC71;
 }
 a:hover {
   text-decoration: underline;
@@ -163,7 +163,7 @@ a:hover {
 }
 
 .expandedbox-light {
-  background-color: whitesmoke;
+  background-color: #F5F5F5;
 }
 
 .expandedbox-med {
@@ -319,11 +319,11 @@ a:hover {
 
 /* -------------------------------------------------------- MAIN FOOTER */
 footer {
-  background-color: #292e2b;
+  background-color: #292E2B;
   color: white;
   opacity: .9;
   outline: 1px solid red;
-  background-color: #292e2b;
+  background-color: #292E2B;
 }
 
 /*! --------------------------------------------------------
@@ -331,19 +331,19 @@ footer {
 --------------------------------------------------------- */
 /* -------------------------------------------------------- INPUT PLACEHOLDERS */
 ::-webkit-input-placeholder {
-  color: whitesmoke;
+  color: #F5F5F5;
 }
 
 ::-moz-placeholder {
-  color: whitesmoke;
+  color: #F5F5F5;
 }
 
 :-moz-placeholder {
-  color: whitesmoke;
+  color: #F5F5F5;
 }
 
 :-ms-input-placeholder {
-  color: whitesmoke;
+  color: #F5F5F5;
 }
 
 /* major beautifiers from http://goo.gl/o3F6A and http://goo.gl/tF2Lv    
